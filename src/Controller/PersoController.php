@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Advert;
 use App\Entity\Image;
 use App\Entity\Avis;
+use App\Form\AdvertType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -34,6 +35,11 @@ class PersoController extends Controller
         ));
     }
 
+    public function editAction()
+    {
+
+    }
+
     public function addAction(Request $request)
     {
 
@@ -44,18 +50,10 @@ class PersoController extends Controller
 
         // On crée le FormBuilder grâce au service form factory
 
-        $formBuilder = $this->get('form.factory')->createBuilder(FormType::class, $advert);
+        $form  = $this->get('form.factory')->create(AdvertType::class, $advert);
 
-        // On ajoute les champs de l'entité que l'on veut à notre formulaire
-        $formBuilder
-            ->add('title',     TextType::class)
-            ->add('firstname',   TextType::class)
-            ->add('lastname',    TextType::class)
-            ->add('valider',      SubmitType::class)
-        ;
 
-        // À partir du formBuilder, on génère le formulaire
-        $form = $formBuilder->getForm();
+
 
 
         if($request->isMethod('POST')) {
@@ -65,6 +63,7 @@ class PersoController extends Controller
             if ($form->isValid())  {
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($advert);
+                $em->persist($advert->getImage());
                 $em->flush();
 
                 $request->getSession()->getFlashBag()->add('notice', 'Personnage bien ajouté.');
@@ -79,7 +78,6 @@ class PersoController extends Controller
             'form' => $form->createView(),
         ));
 
-        // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
 
 
 
@@ -143,6 +141,55 @@ class PersoController extends Controller
 */
 
     }
+
+    public function addComAction(Request $request)
+    {
+
+        $avis = new Avis();
+
+
+        $avis->setDate(new \Datetime());
+
+        // On crée le FormBuilder grâce au service form factory
+
+        $form  = $this->get('form.factory')->create('App\Form\AvisType', $avis);
+
+
+
+        /*
+        $em = $this->getDoctrine()->getManager();
+
+        $advert = $em->getRepository('App\Entity\Advert')->find($id);*/
+
+        if ($request->isMethod('POST')) {
+            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+
+            // Puis on redirige vers la page de visualisation de cettte annonce
+            return $this->redirectToRoute('oc_platform_view', array('id' => $advert->getId()));
+        }
+        // Si on n'est pas en POST, alors on affiche le formulaire
+        return $this->render('Perso/addCom.html.twig', array('form' => $form->createView()));
+
+
+
+
+
+        /*
+        $avis1= new Avis();
+        $avis1->setAuthor('Alexandre');
+        $avis1->setContent("Excellent personnages très attachant.");
+        $avis1->setNote(9);
+        $avis1->setAdvert($advert);
+
+        $em->persist($advert);
+
+        $em->persist($avis1);
+
+        $em->flush();
+
+        */
+    }
+
 
     public function viewAction($id)
     {

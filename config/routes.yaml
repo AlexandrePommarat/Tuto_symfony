@@ -29,3 +29,9 @@ app_character_edit:
     controller: App\Controller\PersoController::editAction
     requirements:
             id:  \d+
+
+app_character_addCom:
+    path: /character/edit/com/{id}
+    controller: App\Controller\PersoController::addComAction
+    requirements:
+                id:  \d+
