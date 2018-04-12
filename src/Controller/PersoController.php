@@ -142,7 +142,7 @@ class PersoController extends Controller
 
     }
 
-    public function addComAction(Request $request)
+    public function addComAction(Request $request, $id)
     {
 
         $avis = new Avis();
@@ -161,11 +161,34 @@ class PersoController extends Controller
 
         $advert = $em->getRepository('App\Entity\Advert')->find($id);*/
 
-        if ($request->isMethod('POST')) {
-            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
 
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+
+            if ($form->isValid())  {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($avis);
+                $advert = $em->getRepository('App\Entity\Advert')->find($id);
+                $avis->setAdvert($advert);
+
+
+                $em->persist($advert->getImage());
+                $em->flush();
+
+                $request->getSession()->getFlashBag()->add('notice', 'Personnage bien ajouté.');
+
+                // On redirige vers la page de visualisation de l'annonce nouvellement créée
+                return $this->redirectToRoute('app_character_details', array('id' => $advert->getId()));
+
+            }
+        return $this->render('Perso/add.html.twig', array(
+            'form' => $form->createView(),
+        ));
+            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
+            var_dump('test');
             // Puis on redirige vers la page de visualisation de cettte annonce
-            return $this->redirectToRoute('oc_platform_view', array('id' => $advert->getId()));
+            return $this->redirectToRoute('app_character_details', array('id' => $id));
         }
         // Si on n'est pas en POST, alors on affiche le formulaire
         return $this->render('Perso/addCom.html.twig', array('form' => $form->createView()));
