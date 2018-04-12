@@ -1,0 +1,10 @@
+
+    {% for advert in listAdverts %}
+    <ul class="nav nav-pills nav-stacked">
+        <li>
+            <a href="{{ path('app_character_details', {'id': advert.id}) }}">
+                {{ advert.Firstname }}
+            </a>
+        </li>
+    </ul>
+    {% endfor %}

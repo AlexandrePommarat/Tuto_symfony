@@ -1,0 +1,31 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+
+app_home:
+    path: /
+    controller: App\Controller\PersoController::indexAction
+
+
+app_character_add:
+    path: /add
+    controller: App\Controller\PersoController::addAction
+
+app_character_details:
+    path: /character/{id}
+    controller: App\Controller\PersoController::viewAction
+    requirements:
+            id:  \d+
+
+app_character_delete:
+    path: /character/delete/{id}
+    controller: App\Controller\PersoController::deleteAction
+    requirements:
+            id:  \d+
+
+app_character_edit:
+    path: /character/edit/{id}
+    controller: App\Controller\PersoController::editAction
+    requirements:
+            id:  \d+

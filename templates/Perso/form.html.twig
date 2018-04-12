@@ -1,0 +1,56 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/form.html.twig #}
+
+{# Cette vue n'hérite de personne, elle sera incluse par d'autres vues qui,
+   elles, hériteront probablement du layout. Je dis « probablement » car,
+   ici pour cette vue, on n'en sait rien et c'est une info qui ne nous concerne pas. #}
+
+
+{# On laisse vide la vue pour l'instant, on la comblera plus tard
+   lorsqu'on saura afficher un formulaire. #}
+<div class="well">
+
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+
+
+    {# Génération manuelle et éclatée : #}
+    <div class="form-group">
+        {# Génération du label. #}
+        {{ form_label(form.title, "Titre de l'oeuvre", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.title) }}
+
+        <div class="col-sm-10">
+            {# Génération de l'input. #}
+            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    {# Idem pour un autre champ. #}
+    <div class="form-group">
+        {{ form_label(form.firstname, "Prénom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.firstname) }}
+        <div class="col-sm-10">
+            {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.lastname, "Nom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.lastname) }}
+        <div class="col-sm-10">
+            {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+
+
+    {{ form_widget(form.valider, {'attr': {'class': 'btn btn-primary'}}) }}
+
+
+    {# Fermeture de la balise <form> du formulaire HTML #}
+    {{ form_end(form) }}
+</div>

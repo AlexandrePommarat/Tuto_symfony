@@ -1,0 +1,42 @@
+
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Description d'un personnage - {{ parent() }}
+{% endblock %}
+
+{% block ocplatform_body %}
+
+    <h2>{{ advert.title }}</h2>
+
+    <div class="well">
+        {{ advert.firstname }} {{ advert.lastname }}
+
+    {% if advert.image is not null %}
+        <img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}" width="600px" height="300px">
+    {% endif %}
+    <p>
+        {% for avis in listAvis %}
+        <li>
+            {{ avis.author }} - Note: {{ avis.note }} - Commentaire: {{ avis.content }}
+        </li>
+
+        {% endfor %}
+    </p>
+    <p>
+        <a href="{{ path('app_home') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à la liste
+        </a>
+        <a href="{{ path('app_character_edit', {'id': advert.id}) }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-edit"></i>
+            Modifier le personnage
+        </a>
+        <a href="{{ path('app_character_delete', {'id': advert.id}) }}" class="btn btn-danger">
+            <i class="glyphicon glyphicon-trash"></i>
+            Supprimer le personnage
+        </a>
+    </p>
+    </div>
+
+{% endblock %}
