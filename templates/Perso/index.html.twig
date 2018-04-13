@@ -12,11 +12,12 @@
         {% for advert in listAdverts %}
             <li>
                 <a href="{{ path('app_character_details', {'id': advert.id}) }}">
-                    {{ advert.title }} -> {{ advert.Firstname }}
+                   {{ advert.Firstname }}
                 </a>
             </li>
 
         {% endfor %}
     </ul>
+
 
 {% endblock %}

@@ -8,8 +8,25 @@ app_home:
     controller: App\Controller\PersoController::indexAction
 
 
+app_work_add:
+    path: /work/add
+    controller: App\Controller\WorkController::addAction
+
+app_work_details:
+    path: /work/{id}
+    controller: App\Controller\WorkController::viewAction
+
+app_work_delete:
+    path: /work/delete/{id}
+    controller: App\Controller\WorkController::deleteAction
+
+
+app_character_addByOeuvre:
+    path: /character/addByWk/{id}
+    controller: App\Controller\PersoController::addByWkAction
+
 app_character_add:
-    path: /add
+    path: /character/add
     controller: App\Controller\PersoController::addAction
 
 app_character_details:
@@ -33,5 +50,12 @@ app_character_edit:
 app_character_addCom:
     path: /character/edit/com/{id}
     controller: App\Controller\PersoController::addComAction
+    requirements:
+                id:  \d+
+
+
+app_com_delete:
+    path: /character/delete/com/{id}
+    controller: App\Controller\PersoController::deleteComAction
     requirements:
                 id:  \d+

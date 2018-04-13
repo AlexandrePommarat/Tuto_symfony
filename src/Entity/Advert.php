@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="advert")
  * @ORM\Entity(repositoryClass="App\Repository\AdvertRepository")
  */
 class Advert
@@ -13,6 +14,47 @@ class Advert
      * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"remove"})
      */
     private $image;
+
+    /**
+     * @var Oeuvre
+     * @ORM\ManyToOne(targetEntity="App\Entity\Oeuvre", inversedBy="advert")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $oeuvre;
+
+    /**
+     * @return mixed
+     */
+    public function getOeuvre()
+    {
+        return $this->oeuvre;
+    }
+
+    /**
+     * @param mixed $oeuvre
+     */
+    public function setOeuvre($oeuvre): void
+    {
+        $this->oeuvre = $oeuvre;
+    }
+
+
+
+    /**
+     * @return \Datetime
+     */
+    public function getDate(): \Datetime
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \Datetime $date
+     */
+    public function setDate(\Datetime $date): void
+    {
+        $this->date = $date;
+    }
 
     /**
      * @return mixed
@@ -42,11 +84,6 @@ class Advert
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $title;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -119,17 +156,7 @@ class Advert
         return $this->id;
     }
 
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
 
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
 
     public function getName(): ?string
     {

@@ -3,8 +3,18 @@
     <ul class="nav nav-pills nav-stacked">
         <li>
             <a href="{{ path('app_character_details', {'id': advert.id}) }}">
-                {{ advert.Firstname }}
+                {{ advert.Firstname }} {{ advert.LastName }}
             </a>
         </li>
     </ul>
+    {% endfor %}
+    <h4>Dernières oeuvres</h4>
+    {% for oeuvre in listOeuvres %}
+        <ul class="nav nav-pills nav-stacked">
+            <li>
+                <a href="{{ path('app_work_details', {'id': oeuvre.id}) }}">
+                    {{ oeuvre.title }}
+                </a>
+            </li>
+        </ul>
     {% endfor %}

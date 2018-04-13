@@ -8,21 +8,19 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AdvertType extends AbstractType
+class OeuvreType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstname',   TextType::class)
-            ->add('lastname',    TextType::class)
-            ->add('image', ImageType::class)
+            ->add('title',     TextType::class)
             ->add('valider',      SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'App\Entity\Advert'
+            'data_class' => 'App\Entity\Oeuvre'
         ));
     }
 }

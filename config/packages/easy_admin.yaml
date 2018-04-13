@@ -4,3 +4,4 @@ easy_admin:
         - App\Entity\Advert
         - App\Entity\Image
         - App\Entity\Avis
+        - App\Entity\Oeuvre

@@ -9,14 +9,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 class PersoController extends Controller
 {
-
+    /*
+     * Cette méthode permet d'afficher les dix derniers personnages ajoutés en base
+     */
     public function indexAction()
     {
         $repository = $this
@@ -31,15 +30,25 @@ class PersoController extends Controller
 
         // Mais pour l'instant, on ne fait qu'appeler le template
         return $this->render('Perso/index.html.twig', array(
-            'listAdverts' => $listAdverts
+            'listAdverts' => $listAdverts,
         ));
     }
 
+    /*
+     * Cette méthode permettra de modifier un personnage
+     */
     public function editAction()
     {
 
     }
 
+
+
+
+    /*
+    * Cette méthode permet d'ajouter un personnage
+    *
+    */
     public function addAction(Request $request)
     {
 
@@ -78,70 +87,74 @@ class PersoController extends Controller
             'form' => $form->createView(),
         ));
 
+    }
 
-
-
-
-       /* // Création de l'entité
+    public function addByWkAction(Request $request, $id)
+    {
         $advert = new Advert();
-        $advert->setTitle('Violet Evergarden');
-        $advert->setFirstName('Violet');
-        $advert->setLastName('Evergarden');
+
+
         $advert->setDateajout(new \Datetime());
-        // On peut ne pas définir ni la date ni la publication,
-        // car ces attributs sont définis automatiquement dans le constructeur
 
-        //PARTIE IMAGE
-        $image = new Image();
-        $image->setUrl('https://www.nautiljon.com/images/galerie/11/37/violet_evergarden_952073.jpg');
-        $image->setAlt('Pas de chance');
+        // On crée le FormBuilder grâce au service form factory
 
-        $advert->setImage($image);
+        $form  = $this->get('form.factory')->create('App\Form\AdvertType', $advert);
 
-        //PARTIE AVIS
+        /*
+        $em = $this->getDoctrine()->getManager();
 
-        //création d'un premier avis
+        $advert = $em->getRepository('App\Entity\Advert')->find($id);*/
+
+
+
+        if ($request->isMethod('POST')) {
+            $form->handleRequest($request);
+
+            if ($form->isValid())  {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($advert);
+                $oeuvre = $em->getRepository('App\Entity\Oeuvre')->find($id);
+                $advert->setOeuvre($oeuvre);
+                $em->persist($advert->getImage());
+                $em->flush();
+
+                $request->getSession()->getFlashBag()->add('notice', 'Personnage bien ajouté.');
+
+                // On redirige vers la page de visualisation de l'annonce nouvellement créée
+                return $this->redirectToRoute('app_character_details', array('id' => $advert->getId()));
+
+            }
+            return $this->render('Perso/add.html.twig', array(
+                'form' => $form->createView(),
+            ));
+            $request->getSession()->getFlashBag()->add('notice', 'Personnage bien enregistrée.');
+            // Puis on redirige vers la page de visualisation de cettte annonce
+            return $this->redirectToRoute('app_character_details', array('id' => $id));
+        }
+        // Si on n'est pas en POST, alors on affiche le formulaire
+        return $this->render('Perso/add.html.twig', array('form' => $form->createView()));
+
+        /*
         $avis1= new Avis();
         $avis1->setAuthor('Alexandre');
         $avis1->setContent("Excellent personnages très attachant.");
         $avis1->setNote(9);
-
-        //création d'un deuxième avis
-        $avis2= new Avis();
-        $avis2->setAuthor('Yohann');
-        $avis2->setContent("Personnage sans intérêt car j'ai envie d'avoir un avis différent");
-        $avis2->setNote(5);
-
         $avis1->setAdvert($advert);
-        $avis2->setAdvert($advert);
 
-        // On récupère l'EntityManager
-        $em = $this->getDoctrine()->getManager();
-
-        // Étape 1 : On « persiste » l'entité
         $em->persist($advert);
 
         $em->persist($avis1);
-        $em->persist($avis2);
-
-        $em->persist($image);
-
 
         $em->flush();
 
-        // Reste de la méthode qu'on avait déjà écrit
-        if ($request->isMethod('POST')) {
-            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-
-            // Puis on redirige vers la page de visualisation de cettte annonce
-            return $this->redirectToRoute('oc_platform_view', array('id' => $advert->getId()));
-        }
-        // Si on n'est pas en POST, alors on affiche le formulaire
-        return $this->render('Perso/add.html.twig', array('advert' => $advert));
-*/
-
+        */
     }
 
+
+    /*
+     * Cette méthode permet d'ajouter un commentaire à un personnage
+     * Elle prend en paramètre le numéro du personnage
+     */
     public function addComAction(Request $request, $id)
     {
 
@@ -153,8 +166,6 @@ class PersoController extends Controller
         // On crée le FormBuilder grâce au service form factory
 
         $form  = $this->get('form.factory')->create('App\Form\AvisType', $avis);
-
-
 
         /*
         $em = $this->getDoctrine()->getManager();
@@ -185,17 +196,15 @@ class PersoController extends Controller
         return $this->render('Perso/add.html.twig', array(
             'form' => $form->createView(),
         ));
-            $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
-            var_dump('test');
+
+
+            $request->getSession()->getFlashBag()->add('notice', 'Commentaire bien enregistrée.');
+
             // Puis on redirige vers la page de visualisation de cettte annonce
             return $this->redirectToRoute('app_character_details', array('id' => $id));
         }
         // Si on n'est pas en POST, alors on affiche le formulaire
         return $this->render('Perso/addCom.html.twig', array('form' => $form->createView()));
-
-
-
-
 
         /*
         $avis1= new Avis();
@@ -240,17 +249,32 @@ class PersoController extends Controller
             ->getRepository('App\Entity\Avis')
             ->findBy(array('advert' => $advert));
 
-
+        $total=0;
+        $nb_note=0;
+        foreach($listAvis as $avis)
+        {
+            $total+=$avis->getNote();
+            $nb_note+=1;
+        }
+        if($nb_note!=0) {
+            $moyenne = $total / $nb_note;
+        }else{
+            $moyenne = "Pas de note";
+        }
         // Le render ne change pas, on passait avant un tableau, maintenant un objet
         return $this->render('Perso/view.html.twig', array(
             'advert' => $advert,
+            'moyenne' => $moyenne,
             'listAvis' => $listAvis
         ));
 
 
     }
 
+
+
     public function deleteAction($id){
+
         $em = $this->getDoctrine()->getManager();
 
         // On récupère l'annonce $id
@@ -258,7 +282,7 @@ class PersoController extends Controller
         $advert = $em->getRepository('App\Entity\Advert')->find($id);
 
         if (null === $advert) {
-            throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+            throw new NotFoundHttpException("Le personnage d'id ".$id." n'existe pas.");
         }
 
         $listAvis = $em
@@ -277,6 +301,26 @@ class PersoController extends Controller
 
     }
 
+    /*
+     * Cette méthode permet de supprimer un commentaire
+     */
+    public function deleteComAction($id){
+        $em = $this->getDoctrine()->getManager();
+        $avis = $em->getRepository('App\Entity\Avis')->find($id);
+
+        if (null === $avis) {
+            throw new NotFoundHttpException("L'avis d'id ".$id." n'existe pas.");
+        }
+
+        $em->remove($avis);
+        $em->flush();
+
+        return $this->render('Perso/deleteCom.html.twig');
+    }
+
+    /*
+     * Permet d'afficher les 5 derniers personnages ajoutés en base
+     */
     public function menuAction(Request $request)
     {
 
@@ -287,11 +331,19 @@ class PersoController extends Controller
 
         $listAdverts = $repository->findBy(array(),array('dateajout' => 'desc'),5,0);
 
+        $repository1 = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('App\Entity\Oeuvre');
+
+        $listOeuvres = $repository1->findBy(array(),array('date' => 'desc'),5,0);
+
 
         return $this->render('Perso/menu.html.twig', array(
             // Tout l'intérêt est ici : le contrôleur passe
             // les variables nécessaires au template !
-            'listAdverts' => $listAdverts
+            'listAdverts' => $listAdverts,
+            'listOeuvres' => $listOeuvres
         ));
     }
 

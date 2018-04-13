@@ -1,0 +1,28 @@
+{# src/OC/PlatformBundle/Resources/views/Advert/add.html.twig #}
+
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Ajouter un Personnage - {{ parent() }}
+
+{% endblock %}
+
+{% block categorie%}
+    <h1>Oeuvre</h1>
+{% endblock %}
+
+
+{% block ocplatform_body %}
+
+    <h2>Ajouter une oeuvre</h2>
+
+    {{ include("/Work/form.html.twig") }}
+
+    <p>
+        Attention : cette oeuvre sera ajoutée directement
+        sur la page d'accueil après validation du formulaire.
+    </p>
+
+
+
+{% endblock %}

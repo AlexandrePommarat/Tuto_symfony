@@ -7,19 +7,23 @@
 
 {% block ocplatform_body %}
 
-    <h2>{{ advert.title }}</h2>
 
+
+
+       <h3>{{ advert.firstname }} {{ advert.lastname }} - Notation: {{ moyenne }}
+
+           </h3>
     <div class="well">
-        {{ advert.firstname }} {{ advert.lastname }}
-
     {% if advert.image is not null %}
         <img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}" width="600px" height="300px">
     {% endif %}
     <p>
         {% for avis in listAvis %}
         <li>
-            {{ avis.author }} - Note: {{ avis.note }} - Commentaire: {{ avis.content }}
-        </li>
+            {{ avis.author }} - Note: {{ avis.note }} - Commentaire: {{ avis.content }}  <a href="{{ path('app_com_delete', {'id': avis.id}) }}" class="btn btn-danger">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </li>
 
         {% endfor %}
     </p>

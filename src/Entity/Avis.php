@@ -2,15 +2,17 @@
 
 
 namespace App\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="avis")
  * @ORM\Entity(repositoryClass="App\Repository\AvisRepository")
  */
 class Avis
 {
     /**
+     * @var Advert
      * @ORM\ManyToOne(targetEntity="App\Entity\Advert", inversedBy="avis")
      * @ORM\JoinColumn(nullable=false)
      */
