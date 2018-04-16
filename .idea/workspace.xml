@@ -2,34 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08875616-25a2-4102-bca0-fb22dbc4e361" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/CategoryController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/mylist.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mylist.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/dev/routing.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/dev/routing.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/easy_admin.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/easy_admin.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PersoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PersoController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/WorkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/WorkController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Advert.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Advert.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Image.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Image.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Oeuvre.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Oeuvre.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/ImageType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ImageType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/OeuvreType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/OeuvreType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Perso/delete.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Perso/delete.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Perso/form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Perso/form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Perso/menu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Perso/menu.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Perso/view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Perso/view.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Work/form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Work/form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/Work/view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Work/view.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ORM/LoadCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ORM/LoadCategory.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -147,7 +121,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="PersoController.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="PersoController.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Controller/PersoController.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="390">
@@ -157,6 +131,32 @@
                   </folding>
                 </state>
               </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="LoadUser.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/DataFixtures/ORM/LoadUser.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="180">
+                  <caret line="12" column="58" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
+                  <folding>
+                    <element signature="e#49#99#0#PHP" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="LoadCategory.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/DataFixtures/ORM/LoadCategory.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="90">
+                  <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="23" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/DataFixtures/.gitignore">
+              <provider selected="true" editor-type-id="text-editor" />
             </entry>
           </file>
           <file leaf-file-name="form.html.twig" pinned="false" current-in-tab="false">
@@ -215,7 +215,6 @@
         <option value="$PROJECT_DIR$/src/Form/AvisType.php" />
         <option value="$PROJECT_DIR$/src/Entity/Oeuvre.php" />
         <option value="$PROJECT_DIR$/config/services.yaml" />
-        <option value="$PROJECT_DIR$/src/DataFixtures/ORM/LoadCategory.php" />
         <option value="$PROJECT_DIR$/src/Controller/WorkController.php" />
         <option value="$PROJECT_DIR$/templates/Work/view.html.twig" />
         <option value="$PROJECT_DIR$/templates/Perso/delete.html.twig" />
@@ -242,6 +241,8 @@
         <option value="$PROJECT_DIR$/config/packages/easy_admin.yaml" />
         <option value="$PROJECT_DIR$/src/Entity/User.php" />
         <option value="$PROJECT_DIR$/src/Controller/PersoController.php" />
+        <option value="$PROJECT_DIR$/src/DataFixtures/ORM/LoadCategory.php" />
+        <option value="$PROJECT_DIR$/src/DataFixtures/ORM/LoadUser.php" />
       </list>
     </option>
   </component>
@@ -493,12 +494,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1523441678394</updated>
-      <workItem from="1523441679556" duration="81327000" />
+      <workItem from="1523441679556" duration="82093000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81327000" />
+    <option name="totallyTimeSpent" value="82093000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="0" width="1680" height="1050" extended-state="0" />
@@ -553,20 +554,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/form/Extension/Core/Type/NumberType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/symfony/form/Extension/Core/Type/IntegerType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Perso/addCom.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
@@ -578,13 +565,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataFixtures/ORM/LoadCategory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -842,16 +822,6 @@
     <entry file="file://$PROJECT_DIR$/src/Entity/Category.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Form/ImageType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
-          <folding>
-            <element signature="e#28#64#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/CategoryController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -913,12 +883,42 @@
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/ORM/LoadCategory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Form/ImageType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding>
+            <element signature="e#28#64#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/PersoController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="26" column="79" selection-start-line="26" selection-start-column="79" selection-end-line="26" selection-end-column="79" />
           <folding>
             <element signature="e#33#55#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataFixtures/ORM/LoadUser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="58" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
+          <folding>
+            <element signature="e#49#99#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
