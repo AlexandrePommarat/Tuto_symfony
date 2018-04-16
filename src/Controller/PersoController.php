@@ -5,6 +5,7 @@ use App\Entity\Advert;
 use App\Entity\Image;
 use App\Entity\Avis;
 use App\Form\AdvertType;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -24,7 +25,6 @@ class PersoController extends Controller
             ->getRepository('App\Entity\Advert');
 
         $listAdverts = $repository->findBy(array(),array('id' => 'desc'),10,0);
-
 
         // Ici, on récupérera la liste des annonces, puis on la passera au template
 
@@ -49,7 +49,7 @@ class PersoController extends Controller
     * Cette méthode permet d'ajouter un personnage
     *
     */
-    public function addAction(Request $request)
+   /* public function addAction(Request $request)
     {
 
         $advert = new Advert();
@@ -87,10 +87,14 @@ class PersoController extends Controller
             'form' => $form->createView(),
         ));
 
-    }
+    }*/
 
     public function addByWkAction(Request $request, $id)
     {
+        if (!$this->get('security.authorization_checker')->isGranted('ROLE_AUTEUR')) {
+            // Sinon on déclenche une exception « Accès interdit »
+            throw new AccessDeniedException('Accès limité aux auteurs.');
+        }
         $advert = new Advert();
 
 
@@ -111,8 +115,10 @@ class PersoController extends Controller
             $form->handleRequest($request);
 
             if ($form->isValid())  {
+
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($advert);
+
                 $oeuvre = $em->getRepository('App\Entity\Oeuvre')->find($id);
                 $advert->setOeuvre($oeuvre);
                 $em->persist($advert->getImage());
@@ -158,7 +164,7 @@ class PersoController extends Controller
     public function addComAction(Request $request, $id)
     {
 
-        $avis = new Avis();
+        $avis = new Avis;
 
 
         $avis->setDate(new \Datetime());
@@ -181,6 +187,9 @@ class PersoController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($avis);
                 $advert = $em->getRepository('App\Entity\Advert')->find($id);
+
+                $advert->addAvis($avis);
+
                 $avis->setAdvert($advert);
 
 
@@ -227,6 +236,7 @@ class PersoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $avisRepository = $em->getRepository(Avis::class);
+
 
         // On récupère le repository
         $em = $this->getDoctrine()->getManager();
@@ -284,15 +294,14 @@ class PersoController extends Controller
         if (null === $advert) {
             throw new NotFoundHttpException("Le personnage d'id ".$id." n'existe pas.");
         }
-
         $listAvis = $em
             ->getRepository('App\Entity\Avis')
             ->findBy(array('advert' => $advert));
-
-        foreach ($listAvis as $avis)
+        foreach($listAvis as $avis)
         {
             $em->remove($avis);
         }
+
         $em->remove($advert);
 
         $em->flush();

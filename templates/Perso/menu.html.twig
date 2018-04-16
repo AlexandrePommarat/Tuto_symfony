@@ -18,3 +18,7 @@
             </li>
         </ul>
     {% endfor %}
+    {% if is_granted('ROLE_AUTEUR') %}
+        <h4>Options Administrateur</h4>
+        <a href="{{ path('app_category_add' ) }}">Ajouter une catégorie</a>
+    {% endif %}

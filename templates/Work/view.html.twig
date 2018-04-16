@@ -12,7 +12,14 @@
     <h2>{{ oeuvre.title }}</h2>
 
     <div class="well">
-
+        {% if not oeuvre.categories.empty %}
+            <p>
+                Cette oeuvre contient les catégories suivantes :
+                {% for category in oeuvre.categories %}
+                    {{ category.name }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+        {% endif %}
 
         {% for perso in listPerso %}
             <li>

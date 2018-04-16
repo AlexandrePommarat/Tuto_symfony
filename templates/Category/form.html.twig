@@ -1,0 +1,35 @@
+<div class="well">
+
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+
+
+    {# Génération manuelle et éclatée : #}
+
+
+    {# Idem pour un autre champ. #}
+    <div class="form-group">
+        {{ form_label(form.name, "Nom", {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        {{ form_errors(form.name) }}
+        <div class="col-sm-10">
+            {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    {{ form_widget(form.valider, {'attr': {'class': 'btn btn-primary'}}) }}
+
+    {{ form_rest(form) }}
+
+    {# Fermeture de la balise <form> du formulaire HTML #}
+    {{ form_end(form) }}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</div>

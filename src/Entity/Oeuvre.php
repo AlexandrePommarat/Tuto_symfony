@@ -12,33 +12,38 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Oeuvre
 {
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Oeuvre", mappedBy="oeuvre")
+     * @ORM\OneToMany(targetEntity="App\Entity\Advert", mappedBy="oeuvre")
      */
     private $advert;
+
+    /**
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    // Notez le singulier, on ajoute une seule catégorie à la fois
+    public function addCategory(Category $category)
+    {
+        // Ici, on utilise l'ArrayCollection vraiment comme un tableau
+        $this->categories[] = $category;
+    }
+
+    public function removeCategory(Category $category)
+    {
+        // Ici on utilise une méthode de l'ArrayCollection, pour supprimer la catégorie en argument
+        $this->categories->removeElement($category);
+    }
 
     public function __construct()
     {
         $this->date         = new \Datetime();
-        $this->categories   = new ArrayCollection();
-        $this->applications = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
-    /**
-     * @param Application $application
-     */
-    public function addAdvert(Advert $advert)
-    {
-        $this->advert[] = $advert;
-        // On lie l'annonce à la candidature
-        $advert->setOeuvre($this);
-    }
-    /**
-     * @param Application $application
-     */
-    public function removeAdvert(Advert $advert)
-    {
-        $this->advert->removeElement($advert);
-    }
+
     /**
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -62,6 +67,11 @@ class Oeuvre
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", cascade={"persist"})
+     */
+    private $categories;
 
     /**
      * @return mixed
@@ -95,4 +105,5 @@ class Oeuvre
 
         return $this;
     }
+
 }

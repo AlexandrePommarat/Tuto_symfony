@@ -14,10 +14,11 @@
 
            </h3>
     <div class="well">
-    {% if advert.image is not null %}
-        <img src="{{ advert.image.url }}" alt="{{ advert.image.alt }}" width="600px" height="300px">
+
+        {% if advert.image is not null %}
+        <img src="{{ asset(advert.image.uploadDir ~ '/' ~ advert.image.id ~ '.' ~ advert.image.url) }}"
+             alt="{{ advert.image.uploadDir ~ '/' ~ advert.image.id ~ '.' ~ advert.image.url }}" width="600px" height="300px">
     {% endif %}
-    <p>
         {% for avis in listAvis %}
         <li>
             {{ avis.author }} - Note: {{ avis.note }} - Commentaire: {{ avis.content }}  <a href="{{ path('app_com_delete', {'id': avis.id}) }}" class="btn btn-danger">

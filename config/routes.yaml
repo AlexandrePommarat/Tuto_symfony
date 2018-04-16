@@ -2,6 +2,15 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+login:
+    path: /login
+    controller: App\Controller\SecurityController::loginAction
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout
 
 app_home:
     path: /
@@ -15,6 +24,10 @@ app_work_add:
 app_work_details:
     path: /work/{id}
     controller: App\Controller\WorkController::viewAction
+
+app_work_edit:
+    path: /work/edit/{id}
+    controller: App\Controller\WorkController::editAction
 
 app_work_delete:
     path: /work/delete/{id}
@@ -58,4 +71,8 @@ app_com_delete:
     path: /character/delete/com/{id}
     controller: App\Controller\PersoController::deleteComAction
     requirements:
-                id:  \d+
+           id:  \d+
+
+app_category_add:
+    path: /category/add
+    controller: App\Controller\CategoryController::addAction
