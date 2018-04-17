@@ -4,32 +4,36 @@ namespace App\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use App\Entity\Category;
+use App\Entity\User;
 
 class LoadCategory implements FixtureInterface
 {
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
     public function load(ObjectManager $manager)
     {
-        // Liste des noms de catégorie à ajouter
-        $names = array(
-            'Horreur',
-            'Aventure',
-            'Violent',
-            'Comédie',
-            'Sentimentale'
-        );
+        foreach ($this->getUserData() as [$fullname, $username, $password, $email, $roles]) {
+            $user = new User();
+            $user->setFullName($fullname);
+            $user->setUsername($username);
+            $user->setPassword($password);
+            $user->setEmail($email);
+            $user->setRoles($roles);
 
-        foreach ($names as $name) {
-            // On crée la catégorie
-            $category = new Category();
-            $category->setName($name);
-
-            // On la persiste
-            $manager->persist($category);
+            $manager->persist($user);
+            //$this->addReference($username, $user);
         }
 
-        // On déclenche l'enregistrement de toutes les catégories
         $manager->flush();
+    }
+
+    private function getUserData(): array
+    {
+        return [
+            // $userData = [$fullname, $username, $password, $email, $roles];
+            ['Alexandre', 'Barroblade', 'poulette', 'ap@symfony.com', ['ROLE_ADMIN']],
+            ['Yohann', 'Babacoolo', 'poulette', 'yg@symfony.com', ['ROLE_MODERATEUR']],
+            ['Vincent L', 'Kiwi', 'poulette', 'vl@symfony.com', ['ROLE_AUTEUR']],
+            ['Vincent M', 'Babiche', 'poulette', 'vm@symfony.com', ['ROLE_USER']],
+        ];
     }
 }

@@ -38,7 +38,7 @@ class CategoryController extends Controller
                 $em->persist($category);
                 $em->flush();
 
-                $request->getSession()->getFlashBag()->add('notice', 'Personnage bien ajouté.');
+                $request->getSession()->getFlashBag()->add('notice', 'Categorie bien ajouté.');
 
                 // On redirige vers la page de visualisation de l'annonce nouvellement créée
                 return $this->redirectToRoute('app_work_add');

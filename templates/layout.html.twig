@@ -22,6 +22,13 @@
     </div>
     <div class="row">
         <div id="menu" class="col-md-3">
+
+            <form method="get" action="{{ path('security_login' ) }}">
+                <button type="submit">Se Connecter</button>
+            </form>
+            <form method="get" action="{{ path('user_registration' ) }}">
+                <button type="submit">S'inscrire</button>
+            </form>
             <h3>Les personnages</h3>
             <ul class="nav nav-pills nav-stacked">
                 <li><a href="{{ path('app_home') }}">Accueil</a></li>

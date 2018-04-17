@@ -7,7 +7,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(name="oc_user")
- * @ORM\Entity(repositoryClass="App\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User implements UserInterface
 {
@@ -17,6 +17,53 @@ class User implements UserInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $fullName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", unique=true, length=50)
+     */
+    private $email;
+
+    /**
+     * @return string
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * @param string $fullName
+     */
+    public function setFullName(string $fullName): void
+    {
+        $this->fullName = $fullName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
 
     /**
      * @return mixed
@@ -61,9 +108,16 @@ class User implements UserInterface
     /**
      * @return mixed
      */
-    public function getRoles()
+    public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+
+        // Afin d'être sûr qu'un user a toujours au moins 1 rôle
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
     }
 
     /**
@@ -99,17 +153,17 @@ class User implements UserInterface
     }
 
     /**
-     * @ORM\Column(name="username", type="string", length=100, unique=true)
+     * @ORM\Column(name="username", type="string", length=30, unique=true)
      */
     private $username;
 
     /**
-     * @ORM\Column(name="password", type="string", length=100)
+     * @ORM\Column(name="password", type="string", length=30)
      */
     private $password;
 
     /**
-     * @ORM\Column(name="salt", type="string", length=100)
+     * @ORM\Column(name="salt", type="string", length=100, nullable=true)
      */
     private $salt;
 
@@ -122,5 +176,20 @@ class User implements UserInterface
 
     public function eraseCredentials()
     {
+    }
+    /**
+     * {@inheritdoc}
+     */
+    public function serialize(): string
+    {
+        return serialize([$this->id, $this->username, $this->password]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function unserialize($serialized): void
+    {
+        [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
     }
 }

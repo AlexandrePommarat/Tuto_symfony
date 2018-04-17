@@ -2,15 +2,19 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
-login:
+security_login:
     path: /login
-    controller: App\Controller\SecurityController::loginAction
+    controller: App\Controller\SecurityController::login
 
 login_check:
     path: /login_check
 
 logout:
     path: /logout
+
+user_registration:
+    path: /register
+    controller: App\Controller\RegistrationController:registerAction
 
 app_home:
     path: /

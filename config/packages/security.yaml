@@ -1,6 +1,7 @@
 security:
     encoders:
        Symfony\Component\Security\Core\User\User: plaintext
+       App\Entity\User: plaintext
 
     role_hierarchy:
        ROLE_ADMIN:       [ROLE_AUTEUR, ROLE_MODERATEUR]
@@ -11,11 +12,10 @@ security:
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-                memory:
-                    users:
-                        user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                        admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+         main:
+               entity:
+                 class:    App\Entity\User
+                 property: username
           #memory:
           #  users:
           #    user:   { password: userpass, roles: ['ROLE_USER'] }
@@ -32,7 +32,8 @@ security:
 
         main:  # C'est le nom du pare feu on peut mettre ce qu'on veux
             pattern:   ^/  # masque d'url
-            anonymous:  false  # accepte les utilisateurs anonyme
+            anonymous:  true  # accepte les utilisateurs anonyme
+            provider: main
             form_login:
               login_path: login         #route du formulaire
               check_path: login_check   #route de verification
@@ -51,5 +52,5 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
