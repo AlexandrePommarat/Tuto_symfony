@@ -1,7 +1,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'en'
+    locale: fr
 
 services:
     # default configuration for services in *this* file
@@ -28,3 +28,14 @@ services:
     # please note that last definitions always *replace* previous ones
     App\DataFixtures\ORM\LoadCategory:
         tags: [doctrine.fixture.orm]
+
+framework:
+    # On définit la langue par défaut pour le service de traduction
+    # Décommenter la ligne, et vérifier qu'elle est bien ainsi
+    translator:      { fallbacks: ["%locale%"] }
+
+# …
+
+    # Vérifier cette ligne aussi, pour la langue par défaut de l'utilisateur
+    # C'est celle qui sera utilisée si l'internaute ne demande rien
+    default_locale: "%locale%"
