@@ -2,10 +2,18 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+
+
 translation_test:
+  path:     /{_locale}/traduction/{name}
+  defaults:
+    _controller: App\Controller\TranslationController::translationAction
+
+translation_test1:
   path:     /traduction/{name}
   defaults:
     _controller: App\Controller\TranslationController::translationAction
+
 
 security_login:
     path: /login
@@ -14,7 +22,7 @@ security_login:
 login_check:
     path: /login_check
 
-logout:
+app_logout:
     path: /logout
 
 user_registration:

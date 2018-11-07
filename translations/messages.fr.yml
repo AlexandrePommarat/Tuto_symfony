@@ -1,3 +1,4 @@
 # La syntaxe est : « la chaîne source: la chaîne cible »
 Hello: Bonjour
-Bye: Au revoir
+site.devise: Le site ou on peut trier toutes ses séries
+site.titre: Ma plateforme de personnages
