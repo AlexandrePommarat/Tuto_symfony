@@ -7,3 +7,4 @@ easy_admin:
         - App\Entity\Oeuvre
         - App\Entity\Category
         - App\Entity\User
+        - App\Entity\Article

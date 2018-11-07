@@ -50,6 +50,10 @@ app_work_delete:
     controller: App\Controller\WorkController::deleteAction
 
 
+app_article_add:
+    path: /{_locale}/article/add
+    controller: App\Controller\ArticleController::addAction
+
 app_character_addByOeuvre:
     path: /{_locale}/character/addByWk/{id}
     controller: App\Controller\PersoController::addByWkAction

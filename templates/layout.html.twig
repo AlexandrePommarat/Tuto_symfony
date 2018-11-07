@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block title %}OC Plateforme{% endblock %}</title>
+    <title>{% block title %}{% trans %}site.titre{% endtrans %}{% endblock %}</title>
 
     {% block stylesheets %}
         {# On charge le CSS de bootstrap depuis le site directement #}
@@ -16,55 +16,52 @@
 <div class="container">
     <div id="header" class="jumbotron">
         <h1>
-{% trans %}site.titre{% endtrans %}</h1>
+        {% trans %}site.titre{% endtrans %}</h1>
         <p>
-
+            {%   if app.user==false %}
+        <form method="get" action="{{ path('security_login' ) }}">
+            <button type="submit">{% trans %}signin{% endtrans %}</button>
+        </form>
+        <form method="get" action="{{ path('user_registration' ) }}">
+            <button type="submit">{% trans %}signup{% endtrans %}</button>
+        </form>
+        {%  else %}
+            <form method="get" action="{{ path('app_logout' ) }}">
+                <button type="submit">{% trans %}disconnection{% endtrans %}</button>
+            </form>
+        {% endif %}
         </p>
     </div>
     <div class="row">
         <div id="menu" class="col-md-3">
-{% trans %}site.devise{% endtrans %}
-            {%   if app.user==false %}
-            <form method="get" action="{{ path('security_login' ) }}">
-                <button type="submit">{% trans %}signin{% endtrans %}</button>
-            </form>
-            <form method="get" action="{{ path('user_registration' ) }}">
-                <button type="submit">{% trans %}signup{% endtrans %}</button>
-            </form>
-            {%  else %}
-                <form method="get" action="{{ path('app_logout' ) }}">
-                    <button type="submit">{% trans %}disconnection{% endtrans %}</button>
-                </form>
-            {% endif %}
-            <h3>Les personnages</h3>
+
             <ul class="nav nav-pills nav-stacked">
-                <li><a href="{{ path('app_home') }}">Accueil</a></li>
+                <li><a href="{{ path('app_home') }}">{% trans %}site.accueil.lien{% endtrans %}</a></li><br/><br/>
                 {% if is_granted('ROLE_AUTEUR') %}
-                <li><a href="{{ path('app_work_add') }}">Ajouter une oeuvre</a></li>
+                <li><a href="{{ path('app_article_add') }}">{% trans %}site.create.article{% endtrans %}</a></li>
                 {% endif %}
             </ul>
 
-            <h4>Derniers personnages</h4>
-            {{ render(controller("App\\Controller\\PersoController::menuAction")) }}
 
         </div>
         <div id="content" class="col-md-9">
 
             {% block body %}
                 {% block categorie%}
-                <h1>Personnage</h1>
+                <h1>{% trans %}site.accueil.presentation.titre{% endtrans %}</h1>
                 {% endblock %}
                 <hr>
-                {% block ocplatform_body %}
+                {% block contenu %}
+                    {% trans %}site.accueil.presentation.contenu{% endtrans %}
                 {% endblock %}
 
             {% endblock %}
-        </div>
+        </div>s
     </div>
     <hr>
 
     <footer>
-        <p>The sky's the limit © {{ 'now'|date('Y') }} and beyond.</p>
+        <p>Alexandre Pommarat / +33 7 81 14 55 12 / {% trans %}site.footer{% endtrans %}</p>
     </footer>
 </div>
 

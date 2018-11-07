@@ -1,1 +1,13 @@
 Hello: こんにちわ
+site:
+  titre: 私の個人的なウェブサイト
+  accueil:
+    lien: 歓迎
+    presentation:
+      titre: 私は誰ですか
+      contenu: こんにちわ, my name is Alexandre Pommarat and i'm the creator of this website. The main goal of this website is obviously to learn Symfony framework. I confess at the time of writing, I mostly want to translate what i write in differents languages :p . In fact, you can try to change the URL and replace /en by /fr, /es ou /ja pour rigoler. If i was not lazy the home page should be translate. So, Welcome on my website and don't hesitate to feed it with some data, my database need to grow up ;). Thank you and see you later!
+  create.article: 記事を追加
+  footer: All right reserved
+signup: Sign Up
+signin: Sign In
+disconnection: Disconnection

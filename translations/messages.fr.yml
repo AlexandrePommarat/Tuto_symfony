@@ -1,8 +1,14 @@
 # La syntaxe est : « la chaîne source: la chaîne cible »
 Hello: Bonjour
-site.devise: Le site ou on peut trier toutes ses séries
-site.titre: Ma plateforme de personnages
-
+site:
+  titre: Mon site perso
+  accueil:
+    lien: Accueil
+    presentation:
+      titre: Qui suis-je?
+      contenu: Bonjour, je m'appelle Alexandre Pommarat et je suis le créateur de ce site. Le but de la création de ce site est tout simplement l'apprentissage du framework Symfony. J'avoue que à l'heure ou j'écrit ces ligne, j'ai surtout envie de m'amuser à traduire ce que j'écrit en plusieurs langues :p . D'ailleurs, essayez de changer l'URL et de remplacer par /en, /de ou /ja pour rigoler. Si j'ai pas eu la flemme la page d'accueil doit être traduit. Bienvenue sur mon site et n'hésitez pas à l'alimentez en nouvelles données, ma base de données a besoin de s'étoffer ;). Merci et à bientôt!
+  create.article: Ajouter un Article
+  footer: Tout droits réservés
 signup: Inscription
 signin: Connexion
 disconnection: Se déconnecter

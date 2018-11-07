@@ -18,6 +18,7 @@ class User implements UserInterface
      */
     private $id;
 
+
     /**
      * @var string
      *
