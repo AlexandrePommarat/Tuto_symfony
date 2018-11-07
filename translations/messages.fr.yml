@@ -2,3 +2,7 @@
 Hello: Bonjour
 site.devise: Le site ou on peut trier toutes ses séries
 site.titre: Ma plateforme de personnages
+
+signup: Inscription
+signin: Connexion
+disconnection: Se déconnecter

@@ -26,14 +26,14 @@
 {% trans %}site.devise{% endtrans %}
             {%   if app.user==false %}
             <form method="get" action="{{ path('security_login' ) }}">
-                <button type="submit">Se Connecter</button>
+                <button type="submit">{% trans %}signin{% endtrans %}</button>
             </form>
             <form method="get" action="{{ path('user_registration' ) }}">
-                <button type="submit">S'inscrire</button>
+                <button type="submit">{% trans %}signup{% endtrans %}</button>
             </form>
             {%  else %}
                 <form method="get" action="{{ path('app_logout' ) }}">
-                    <button type="submit">Se déconnecter</button>
+                    <button type="submit">{% trans %}disconnection{% endtrans %}</button>
                 </form>
             {% endif %}
             <h3>Les personnages</h3>

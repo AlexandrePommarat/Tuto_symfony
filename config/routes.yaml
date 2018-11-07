@@ -3,7 +3,6 @@
 #    controller: App\Controller\DefaultController::index
 
 
-
 translation_test:
   path:     /{_locale}/traduction/{name}
   defaults:
@@ -16,80 +15,80 @@ translation_test1:
 
 
 security_login:
-    path: /login
+    path: /{_locale}/login
     controller: App\Controller\SecurityController::login
 
 login_check:
-    path: /login_check
+    path: /{_locale}/login_check
 
 app_logout:
-    path: /logout
+    path: /{_locale}/logout
 
 user_registration:
-    path: /register
+    path: /{_locale}/register
     controller: App\Controller\RegistrationController:registerAction
 
 app_home:
-    path: /
+    path: /{_locale}/
     controller: App\Controller\PersoController::indexAction
 
 
 app_work_add:
-    path: /work/add
+    path: /{_locale}/work/add
     controller: App\Controller\WorkController::addAction
 
 app_work_details:
-    path: /work/{id}
+    path: /{_locale}/work/{id}
     controller: App\Controller\WorkController::viewAction
 
 app_work_edit:
-    path: /work/edit/{id}
+    path: /{_locale}/work/edit/{id}
     controller: App\Controller\WorkController::editAction
 
 app_work_delete:
-    path: /work/delete/{id}
+    path: /{_locale}/work/delete/{id}
     controller: App\Controller\WorkController::deleteAction
 
 
 app_character_addByOeuvre:
-    path: /character/addByWk/{id}
+    path: /{_locale}/character/addByWk/{id}
     controller: App\Controller\PersoController::addByWkAction
 
 app_character_add:
-    path: /character/add
+    path: /{_locale}/character/add
     controller: App\Controller\PersoController::addAction
 
 app_character_details:
-    path: /character/{id}
+    path: /{_locale}/character/{id}
     controller: App\Controller\PersoController::viewAction
     requirements:
             id:  \d+
 
 app_character_delete:
-    path: /character/delete/{id}
+    path: /{_locale}/character/delete/{id}
     controller: App\Controller\PersoController::deleteAction
     requirements:
             id:  \d+
 
 app_character_edit:
-    path: /character/edit/{id}
+    path: /{_locale}/character/edit/{id}
     controller: App\Controller\PersoController::editAction
     requirements:
             id:  \d+
 
 app_character_addCom:
-    path: /character/edit/com/{id}
+    path: /{_locale}/character/edit/com/{id}
     controller: App\Controller\PersoController::addComAction
     requirements:
                 id:  \d+
 
 
 app_com_delete:
-    path: /character/delete/com/{id}
+    path: /{_locale}/character/delete/com/{id}
     controller: App\Controller\PersoController::deleteComAction
     requirements:
            id:  \d+
 
 app_category_add:
-    path: /category/add
+    path: /{_locale}/category/add
     controller: App\Controller\CategoryController::addAction
