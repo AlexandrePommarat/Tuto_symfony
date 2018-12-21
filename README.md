@@ -1,13 +1,11 @@
 # Projet Site de Notation:
 
-Voici le github pour le futur site qui tournera autour de débat et de "notation" de série et d'anime. 
-
+Voici le github pour une ébauche de site qui tournera autour de notation de série. 
 Il est développé en symfony 4.
 
 
 ## L'Equipe
 
-L'équipe est pour l'instant uniquement constitué de moi même, Alexandre Pommarat.
 Ce travail a pour unique vocation d'apprendre à utiliser symfony 4 de façon amusante.
 
 ## Contact
